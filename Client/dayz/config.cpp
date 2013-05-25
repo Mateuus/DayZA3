@@ -42912,7 +42912,8 @@ class CfgMovesZombie: CfgMovesBasic
 		};
 		class ZombieFeed: CutSceneAnimationBase
 		{
-			actions = "ZombieCrouchActions";
+			//actions = "ZombieCrouchActions"; TO FIX "No entry 'config.bin/CfgMovesBasic/Actions.ZombieCrouchActions'" ~Inso 25/05/13
+			actions = "NoActions";
 		};
 		class ZombieFeed1: ZombieFeed
 		{

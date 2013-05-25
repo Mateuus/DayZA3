@@ -194,6 +194,14 @@ class CfgRecoils {
 };
 
 class cfgWeapons {
+	//--BOF; TO FIX "No entry 'config.bin/CfgWeapons/G_Diving'"
+	class Binocular;
+	class G_Diving : Binocular {
+		displayname = "Diving Goggles";
+		descriptionshort = "Diving Goggles.";
+	};
+	//--EOF; ~Inso 25/05/13
+
 	class Rifle;	// External class reference
 	
 	class MeleeWeapon : Rifle {
