@@ -193,6 +193,16 @@ class CfgRecoils {
 	DZ_Stab[] = {0.02, -0.5, 0.2, 0.05, -0.5, 0.3, 0.04, 0, -0.1, 0.5, 0, 0};
 };
 
+//--BOF; TO FIX "No entry 'config.bin/CfgGlasses/G_Diving'"
+class cfgGlasses {
+	class Binocular;
+	class G_Diving : Binocular {
+		displayname = "Diving Goggles";
+		descriptionshort = "Diving Goggles.";
+	};
+};
+//--EOF; ~Inso 25/05/13
+
 class cfgWeapons {
 	//--BOF; TO FIX "No entry 'config.bin/CfgWeapons/G_Diving'"
 	class Binocular;
