@@ -33,6 +33,7 @@ _armsBroke = 		player getVariable ["hit_hands", 0] >= 1;
 _hasBandage = 		"ItemBandage" in items player;
 _hasMorphine = 		"ItemMorphine" in items player;
 _hasPainkillers = 	"ItemPainkiller" in items player;
+_hasAntibiotic =	"ItemAntibiotic" in items player;
 _hasClothes1 = 		"Skin_Sniper1_DZ" in items player; //Ghillie
 _hasClothes2 = 		"Skin_Camo1_DZ" in items player; //Camo
 _hasClothes3 = 		"Skin_Survivor2_DZ" in items player; //Survivor
@@ -47,9 +48,7 @@ _hasClothes3 = 		"Skin_Survivor2_DZ" in items player; //Survivor
 //_hasDrink2 =		"ItemSodaPepsi" in items player;
 //_hasDrink3 =		"ItemSodaMdew" in items player;
 
-_messing =   		player getVariable["messing",[0,0]];
-dayz_hunger =    	_messing select 0;
-dayz_thirst =   	_messing select 1;
+
 _getTextZ =     getText (_config >> "displayName");
 //End of Code
 _hasKnife = 	"ItemKnife" in items player;
@@ -99,7 +98,14 @@ if (_canPickLight and !dayz_hasLight) then {
 		player removeAction s_player_morphineA3;
 		s_player_morphineA3 = -1;
 	};
-
+	if (_vehicle == player and _hasAntibiotic) then {
+		if (s_player_antibioticA3 < 0) then {
+			s_player_antibioticA3 = player addAction [format["<t color='#FF0000'>Use Antibiotics%1</t>"], "\z\addons\dayz_code\medical\morphine.sqf",[_unit], 1, true, true, "", "'ItemAntibiotic' in magazines player"];
+		};
+	} else {
+		player removeAction s_player_antibioticA3;
+		s_player_antiboioticA3 = -1;
+	};
 	//Allow player to use Painkillers
 	if (_vehicle == player and _inPain and _hasPainkillers) then {
 		if (s_player_painkillerA3 < 0) then {
@@ -148,7 +154,7 @@ if (_canPickLight and !dayz_hasLight) then {
 
 	//Allow player to slurp slurp
 	if(_vehicle == player and _hasDrink) then {
-    	if((dayz_thirst > 0) and (dayz_thirst2 > 0)) then {
+    	if((dayz_thirst > 0) and (dayz_thirst2 < 0)) then {
         	dayz_thirst2 = player addAction [format["<t color='#FF0000'>Drink%1</t>"], "\z\addons\dayz_code\actions\player_drink2.sqf",[_getTextZ], 1, false, true, "", "player == player"];
     	};
 	} else {
